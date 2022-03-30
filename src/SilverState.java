@@ -15,7 +15,7 @@ public class SilverState extends AccountState {
 
     @Override
     public void bookMiles(double price) {
-        
+
     }
 
     @Override

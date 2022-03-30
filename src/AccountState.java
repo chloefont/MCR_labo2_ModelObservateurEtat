@@ -37,9 +37,9 @@ public abstract class AccountState {
      */
     protected abstract void stateChangeCheck();
 
-    public abstract void bookMiles(double price);
+    public abstract boolean bookMiles(Ticket t);
 
-    public abstract void bookCash(double price);
+    public abstract boolean bookCash(Ticket t);
 
     public abstract void deposit(double amount);
 }
