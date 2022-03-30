@@ -37,9 +37,23 @@ public abstract class AccountState {
      */
     protected abstract void stateChangeCheck();
 
+    /**
+     * Book a ticket using the miles on the account
+     * @param t the ticket the client is trying to buy
+     * @return returns true if the ticket has been booked
+     */
     public abstract boolean bookMiles(Ticket t);
 
+    /**
+     * Book a ticket using the money on the account
+     * @param t the ticket the client is trying to buy
+     * @return returns true if the ticket has been booked
+     */
     public abstract boolean bookCash(Ticket t);
 
+    /**
+     * Adds money to this account
+     * @param amount amount of money to be deposited on this account
+     */
     public abstract void deposit(double amount);
 }

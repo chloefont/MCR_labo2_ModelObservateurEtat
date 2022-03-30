@@ -1,3 +1,12 @@
+/**
+ * Silver state of an account
+ *
+ * <p>Represents one of the multiple states (State design pattern) in which a client account can be in.</p>
+ * <p>This is the base state of a new client account</p>
+ * @see AccountState
+ * @version 1.0
+ * @author Nelson Jeanrenaud
+ */
 public class SilverState extends AccountState {
     /**
      * Create an account for a client
@@ -14,13 +23,13 @@ public class SilverState extends AccountState {
     }
 
     @Override
-    public void bookMiles(double price) {
-
+    public boolean bookMiles(Ticket t) {
+        return false;
     }
 
     @Override
-    public void bookCash(double price) {
-
+    public boolean bookCash(Ticket t) {
+        return false;
     }
 
     @Override
