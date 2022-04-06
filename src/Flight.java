@@ -1,3 +1,5 @@
+import default;
+
 /**
  * Flight Object
  *
@@ -7,6 +9,7 @@
  * @author Nelson Jeanrenaud
  */
 public class Flight {
+    private Client c;
     private String name;
     /**
      * Distance traveled during this flight
@@ -16,4 +19,13 @@ public class Flight {
      * Base price of this flight
      */
     private double price;
+
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + distance + " miles)";
+    }
 }
