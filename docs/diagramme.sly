@@ -106,14 +106,14 @@
     </entity>
     <entity entityType="CLASS" id="65275" isAbstract="true" name="Observable" visibility="PUBLIC">
       <method isAbstract="true" isStatic="false" name="attach" returnType="void" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="o" type="Observer"/>
+        <variable const="false" name="o" type="Observable"/>
       </method>
       <method isAbstract="true" isStatic="false" name="detach" returnType="void" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="o" type="Observer"/>
+        <variable const="false" name="o" type="Observable"/>
       </method>
       <method isAbstract="true" isStatic="false" name="notify" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
     </entity>
-    <entity entityType="INTERFACE" id="65276" isAbstract="true" name="Observer" visibility="PUBLIC">
+    <entity entityType="INTERFACE" id="65276" isAbstract="true" name="Observable" visibility="PUBLIC">
       <method isAbstract="true" isStatic="false" name="update" returnType="void" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="obj" type="Observable"/>
         <variable const="false" name="arg" type="Object"/>
