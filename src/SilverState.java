@@ -8,6 +8,7 @@
  * @author Nelson Jeanrenaud
  */
 public class SilverState extends AccountState {
+    protected static int MAX_MILES = 1000;
     /**
      * Create an account for a client
      *
@@ -17,23 +18,18 @@ public class SilverState extends AccountState {
         super(owner);
     }
 
+    SilverState(AccountState oldState) {
+        super(oldState);
+    }
+
     @Override
     protected void stateChangeCheck() {
-
+        if(miles > MAX_MILES)
+            owner.setAccountState(new GoldenState(this));
     }
 
     @Override
-    public boolean bookMiles(Ticket t) {
-        return false;
-    }
-
-    @Override
-    public boolean bookCash(Ticket t) {
-        return false;
-    }
-
-    @Override
-    public void deposit(double amount) {
-
+    double getMilesCoeffificent() {
+        return 0.1;
     }
 }

@@ -24,7 +24,14 @@ public class Client {
     /**
      * Account owned by this client
      */
-    private final AccountState account;
+    private AccountState account;
+
+    /**
+     * Change the account state of this client
+     */
+    void setAccountState(AccountState account) {
+        this.account = account;
+    }
 
     /**
      * Creates a new client with a silver account

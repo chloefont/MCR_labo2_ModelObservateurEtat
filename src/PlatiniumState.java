@@ -7,32 +7,33 @@
  * @author Nelson Jeanrenaud
  */
 public class PlatiniumState extends AccountState {
-    /**
-     * Create an account for a client
-     *
-     * @param owner Client who wons this account
-     */
-    public PlatiniumState(Client owner) {
-        super(owner);
+    protected static final int MIN_MILES = 10000;
+    protected static final int MAX_BALANCE = 100000;
+
+    PlatiniumState(AccountState oldState) {
+        super(oldState);
     }
 
     @Override
     protected void stateChangeCheck() {
-
+        if(miles < MIN_MILES)
+            owner.setAccountState(new GoldenState(this));
+        else if(balance > MAX_BALANCE)
+            owner.setAccountState(new SilverState(this));
     }
 
     @Override
-    public boolean bookMiles(Ticket t) {
-        return false;
+    double getMilesCoeffificent() {
+        return 1;
+    }
+}
+
+class PlatiniumStatePremium extends PlatiniumState {
+
+    PlatiniumStatePremium(AccountState oldState) {
+        super(oldState);
     }
 
     @Override
-    public boolean bookCash(Ticket t) {
-        return false;
-    }
-
-    @Override
-    public void deposit(double amount) {
-
-    }
+    protected void stateChangeCheck() {}
 }
