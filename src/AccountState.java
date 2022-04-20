@@ -1,3 +1,7 @@
+import ui.IAccountState;
+
+import java.awt.*;
+
 /**
  * Abstract State Object of the State Pattern
  *
@@ -6,7 +10,7 @@
  * @version 1.0
  * @author Nelson Jeanrenaud
  */
-public abstract class AccountState {
+public abstract class AccountState implements IAccountState {
     /**
      * Amount of dollars available on this account
      * This amount can't be negative
@@ -31,7 +35,7 @@ public abstract class AccountState {
         if(owner == null)
             throw new IllegalArgumentException("Accounts must owned by a client");
         if(owner.hasAccount())
-            throw new IllegalArgumentException("Clients can't have two acconts");
+            throw new IllegalArgumentException("Clients can't have two accounts");
         this.owner = owner;
     }
 
@@ -68,7 +72,7 @@ public abstract class AccountState {
     public boolean bookCash(Ticket t){
         if(balance >= t.getPriceCash()) {
             balance -= t.getPriceCash();
-            miles += t.getMiles() * getMilesCoeffificent();
+            // TODO décommenter --> miles += t.getMiles() * getMilesCoeffificent();
             stateChangeCheck();
             return true;
         }
@@ -86,7 +90,24 @@ public abstract class AccountState {
 
     /**
      * Returns the coefficient by which the number of miles is multiplied to get
-     * ammount of miles added to the balance
+     * amount of miles added to the balance
      */
-    abstract double getMilesCoeffificent();
+    abstract double getMilesCoefficient();
+
+    // TODO améliorer l'implémentation du code ci-dessous
+    public double getBalance(){
+        return balance;
+    }
+    public double getMiles(){
+        return miles;
+    }
+    public String getStatus(){
+        return "";
+    }
+    public String getLastAction(){
+        return "";
+    }
+    public Color getStatusColor(){
+        return Color.GREEN;
+    }
 }

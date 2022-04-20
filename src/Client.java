@@ -1,3 +1,6 @@
+import ui.IAccountState;
+import ui.IClient;
+
 /**
  * Client Object
  *
@@ -5,7 +8,7 @@
  * @version 1.0
  * @author Nelson Jeanrenaud
  */
-public class Client {
+public class Client implements IClient {
 
     /**
      * Auto-incremented counter to generate unique IDs for the clients
@@ -42,5 +45,30 @@ public class Client {
         this.firstname = firstname;
         this.lastname = lastname;
         this.account = new SilverState(this);
+    }
+
+    @Override
+    public String toString() {
+        return lastname + " " + firstname;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String getLastName() {
+        return lastname;
+    }
+
+    @Override
+    public String getFirstName() {
+        return firstname;
+    }
+
+    @Override
+    public IAccountState getAccountState() {
+        return null;
     }
 }

@@ -23,7 +23,7 @@ public class GoldenState extends AccountState {
     }
 
     @Override
-    double getMilesCoeffificent() {
+    double getMilesCoefficient() {
         return 0.5;
     }
 }

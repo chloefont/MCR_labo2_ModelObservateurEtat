@@ -23,7 +23,7 @@ public class PlatiniumState extends AccountState {
     }
 
     @Override
-    double getMilesCoeffificent() {
+    double getMilesCoefficient() {
         return 1;
     }
 }

@@ -29,7 +29,7 @@ public class SilverState extends AccountState {
     }
 
     @Override
-    double getMilesCoeffificent() {
+    double getMilesCoefficient() {
         return 0.1;
     }
 }
