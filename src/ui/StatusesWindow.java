@@ -12,12 +12,13 @@ public class StatusesWindow extends InformationWindow{
 
     private static JLabel[] createLabels(IClient[] clients){
         return (JLabel[]) Arrays.stream(clients)
-                .map(iClient -> {
-                    final JLabel label = new JLabel(iClient.getLastName() + " " +
-                            iClient.getFirstName() + " " +
-                            iClient.getAccountState().getStatus());
-                    label.setForeground(iClient.getAccountState().getStatusColor());
+                .map(cl -> {
+                    final String labelContent = cl.getLastName() + " " +
+                                                cl.getFirstName() + " " +
+                                                cl.getAccountState().getStatus();
+                    final JLabel label = new JLabel(labelContent);
+                    label.setForeground(cl.getAccountState().getStatusColor());
                     return label;
-                }).toArray();
+                }).toArray(JLabel[]::new);
     }
 }

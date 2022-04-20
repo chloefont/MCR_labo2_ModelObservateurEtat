@@ -59,7 +59,7 @@ public class MainWindow extends JFrame {
 
         final JButton statuses = new JButton("Statuses");
         statuses.addActionListener(e ->{
-            //new ClientDetailsWindow();
+            new StatusesWindow(clients);
         });
 
         panel4.add(statuses);
