@@ -69,6 +69,6 @@ public class Client implements IClient {
 
     @Override
     public IAccountState getAccountState() {
-        return null;
+        return account;
     }
 }
