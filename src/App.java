@@ -1,7 +1,6 @@
+import Account.Client;
+import Flights.Flight;
 import ui.MainWindow;
-
-import javax.swing.*;
-import java.awt.*;
 
 public class App implements Runnable{
 
@@ -15,8 +14,14 @@ public class App implements Runnable{
                 new Client("Unenana", "Pasouf")
         };
 
+        Flight[] flights = {
+                new Flight("Paris - Genève", 335, 115),
+                new Flight("Amsterdam - Berlin", 407, 78),
+                new Flight("Paris - Londres", 291, 120),
+                new Flight("Monaco - Lisbonne", 1141, 149)
+        };
 
-        new MainWindow(clients);
+        new MainWindow(clients, flights);
     }
 
     public static void main(String[] args) {

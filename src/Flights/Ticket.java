@@ -1,5 +1,11 @@
+package Flights;
+
+import Flights.Flight;
+import ui.ITicket;
+import Account.Client;
+
 /**
- * Tickets.Ticket Object
+ * Tickets.Flights.Ticket Object
  *
  * <p>Represents a ticket to a flight that can be bought by a client</p>
  * @see Flight
@@ -7,7 +13,7 @@
  * @version 1.0
  * @author Nelson Jeanrenaud
  */
-public abstract class Ticket {
+public abstract class Ticket implements ITicket {
     private String name;
     private final int priceCoefficient;
     private final int milesCoefficient;

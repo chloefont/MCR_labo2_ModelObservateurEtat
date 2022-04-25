@@ -1,14 +1,17 @@
+package Account;
+
+import Observables.Observable;
 import ui.IAccountState;
 import ui.IClient;
 
 /**
- * Client Object
+ * Account.Client Object
  *
  * <p>Represents a client of the flight compagny manager</p>
  * @version 1.0
  * @author Nelson Jeanrenaud
  */
-public class Client implements IClient {
+public class Client extends Observable implements IClient {
 
     /**
      * Auto-incremented counter to generate unique IDs for the clients

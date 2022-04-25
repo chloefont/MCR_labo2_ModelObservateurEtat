@@ -1,3 +1,5 @@
+package Account;
+
 import java.awt.*;
 
 /**
@@ -14,7 +16,7 @@ public class SilverState extends AccountState {
     /**
      * Create an account for a client
      *
-     * @param owner Client who wons this account
+     * @param owner Account.Client who wons this account
      */
     public SilverState(Client owner) {
         super(owner);

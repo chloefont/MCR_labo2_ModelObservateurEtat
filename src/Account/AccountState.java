@@ -1,3 +1,6 @@
+package Account;
+
+import Flights.Ticket;
 import ui.IAccountState;
 
 import java.awt.*;
@@ -29,7 +32,7 @@ public abstract class AccountState implements IAccountState {
 
     /**
      * Create an account for a client
-     * @param owner Client who wons this account
+     * @param owner Account.Client who wons this account
      */
     public AccountState(Client owner) {
         if(owner == null)
@@ -54,14 +57,14 @@ public abstract class AccountState implements IAccountState {
     private double getTicketPrice(Ticket t){
         double tPrice = t.getPriceCash();
         if(tPrice < 0)
-            throw new IllegalArgumentException("Ticket price must be positive");
+            throw new IllegalArgumentException("Flights.Ticket price must be positive");
         return tPrice;
     }
 
     private double getTicketMiles(Ticket t){
         double tMiles = t.getPriceMiles();
         if(tMiles < 0)
-            throw new IllegalArgumentException("Ticket miles must be positive");
+            throw new IllegalArgumentException("Flights.Ticket miles must be positive");
         return tMiles;
     }
 

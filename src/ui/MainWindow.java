@@ -6,11 +6,14 @@ import java.awt.*;
 public class MainWindow extends JFrame {
 
     IClient[] clients;
+    IFlight[] flights;
 
-    public MainWindow(IClient[] clients) {
+    public MainWindow(IClient[] clients, IFlight[] flights) {
         super();
         assert clients != null;
+        assert flights != null;
         this.clients = clients;
+        this.flights = flights;
 
         buildUI();
         pack();
@@ -33,7 +36,7 @@ public class MainWindow extends JFrame {
         gridPanel.add(panel4);
 
         panel1.setSize(panel1.getWidth(), 10);
-        panel1.add(new JLabel("Client"));
+        panel1.add(new JLabel("Account.Client"));
         final JComboBox<IClient> clientComboBox = new JComboBox<>(clients);
         panel1.add(clientComboBox);
 
@@ -49,10 +52,23 @@ public class MainWindow extends JFrame {
         panel2.add(new JButton("Add"));
 
         panel3.setSize(panel3.getWidth(), 10);
-        panel3.add(new JLabel("Flight"));
-        final JComboBox<IClient> flighttComboBox = new JComboBox<>(clients);
+        panel3.add(new JLabel("Flights.Flight"));
+        final JComboBox<IFlight> flighttComboBox = new JComboBox<>(flights);
         panel3.add(flighttComboBox);
-        final JComboBox<IClient> flightCatComboBox = new JComboBox<>(clients);
+
+        IFlight selectedFlight = (IFlight) flighttComboBox.getSelectedItem();
+        JComboBox<ITicket> flightCatComboBox = new JComboBox<>(selectedFlight.getTickets());
+
+        flighttComboBox.addActionListener(e -> {
+            flightCatComboBox.removeAllItems();
+            for(ITicket t : ((IFlight) flighttComboBox.getSelectedItem()).getTickets()) {
+                flightCatComboBox.addItem(t);
+
+            }
+
+        });
+        // TODO: dynamic
+
         panel3.add(flightCatComboBox);
         panel3.add(new JButton("Book (Cash)"));
         panel3.add(new JButton("Book (Miles)"));

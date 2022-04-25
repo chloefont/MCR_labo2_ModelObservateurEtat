@@ -1,9 +1,12 @@
 package ui;
 
+import Observables.Observable;
+import Observables.Observer;
+
 import javax.swing.*;
 import java.util.Arrays;
 
-public class StatusesWindow extends InformationWindow{
+public class StatusesWindow extends InformationWindow implements Observer {
     static final String WINDOW_TITLE = "Statuses";
 
     StatusesWindow(IClient[] clients) {
@@ -20,5 +23,10 @@ public class StatusesWindow extends InformationWindow{
                     label.setForeground(cl.getAccountState().getStatusColor());
                     return label;
                 }).toArray(JLabel[]::new);
+    }
+
+    @Override
+    public void update(Observable obj, Object arg) {
+
     }
 }
