@@ -1,3 +1,5 @@
+import java.awt.*;
+
 /**
  * Silver state of an account
  *
@@ -8,7 +10,7 @@
  * @author Nelson Jeanrenaud
  */
 public class SilverState extends AccountState {
-    protected static int MAX_MILES = 1000;
+    private static final int MAX_MILES = 1000;
     /**
      * Create an account for a client
      *
@@ -24,12 +26,22 @@ public class SilverState extends AccountState {
 
     @Override
     protected void stateChangeCheck() {
-        if(miles > MAX_MILES)
-            owner.setAccountState(new GoldenState(this));
+        if(getMiles() > MAX_MILES)
+            getOwner().setAccountState(new GoldenState(this));
     }
 
     @Override
     double getMilesCoefficient() {
         return 0.1;
+    }
+
+    @Override
+    public String getStatus() {
+        return "Silver";
+    }
+
+    @Override
+    public Color getStatusColor() {
+        return Color.gray;
     }
 }

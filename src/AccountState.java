@@ -15,17 +15,17 @@ public abstract class AccountState implements IAccountState {
      * Amount of dollars available on this account
      * This amount can't be negative
      */
-    protected double balance;
+    private double balance;
     /**
      * Number of miles traveled by the owner of this account
      * Can be used as a currency to book flights
      */
-    protected double miles;
+    private double miles;
 
     /**
      * Owner of this account
      */
-    protected final Client owner;
+    private final Client owner;
 
     /**
      * Create an account for a client
@@ -50,14 +50,30 @@ public abstract class AccountState implements IAccountState {
      */
     protected abstract void stateChangeCheck();
 
+    // TODO c'est a chier ou ça va ?
+    private double getTicketPrice(Ticket t){
+        double tPrice = t.getPriceCash();
+        if(tPrice < 0)
+            throw new IllegalArgumentException("Ticket price must be positive");
+        return tPrice;
+    }
+
+    private double getTicketMiles(Ticket t){
+        double tMiles = t.getPriceMiles();
+        if(tMiles < 0)
+            throw new IllegalArgumentException("Ticket miles must be positive");
+        return tMiles;
+    }
+
     /**
      * Book a ticket using the miles on the account
      * @param t the ticket the client is trying to buy
      * @return returns true if the ticket has been booked
      */
     public boolean bookMiles(Ticket t) {
-        if(miles >= t.getPriceMiles()) {
-            miles -= t.getPriceMiles();
+        double tMiles = getTicketMiles(t);
+        if(miles >= tMiles) {
+            miles -= tMiles;
             stateChangeCheck();
             return true;
         }
@@ -70,9 +86,11 @@ public abstract class AccountState implements IAccountState {
      * @return returns true if the ticket has been booked
      */
     public boolean bookCash(Ticket t){
-        if(balance >= t.getPriceCash()) {
-            balance -= t.getPriceCash();
-            // TODO décommenter --> miles += t.getMiles() * getMilesCoeffificent();
+        double tPrice = getTicketPrice(t);
+        double tMiles = getTicketMiles(t);
+        if(balance >= tPrice) {
+            balance -= tPrice;
+            miles += tMiles * getMilesCoefficient();
             stateChangeCheck();
             return true;
         }
@@ -84,6 +102,8 @@ public abstract class AccountState implements IAccountState {
      * @param amount amount of money to be deposited on this account
      */
     public void deposit(double amount) {
+        if(amount <= 0)
+            throw new IllegalArgumentException("Deposit must be strictly positive");
         balance += amount;
         stateChangeCheck();
     }
@@ -93,6 +113,8 @@ public abstract class AccountState implements IAccountState {
      * amount of miles added to the balance
      */
     abstract double getMilesCoefficient();
+    public abstract String getStatus();
+    public abstract Color getStatusColor();
 
     // TODO améliorer l'implémentation du code ci-dessous
     public double getBalance(){
@@ -101,13 +123,10 @@ public abstract class AccountState implements IAccountState {
     public double getMiles(){
         return miles;
     }
-    public String getStatus(){
-        return "";
-    }
     public String getLastAction(){
         return "";
     }
-    public Color getStatusColor(){
-        return Color.GREEN;
+    protected Client getOwner() {
+        return owner;
     }
 }

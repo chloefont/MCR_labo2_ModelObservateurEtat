@@ -1,3 +1,5 @@
+import java.awt.*;
+
 /**
  * Golden state of an account
  *
@@ -7,8 +9,8 @@
  * @author Nelson Jeanrenaud
  */
 public class GoldenState extends AccountState {
-    protected static int MIN_MILES = 1000;
-    protected static int MAX_MILES = 10000;
+    private static final int MIN_MILES = 1000;
+    private static final int MAX_MILES = 10000;
 
     GoldenState(AccountState oldState) {
         super(oldState);
@@ -16,14 +18,24 @@ public class GoldenState extends AccountState {
 
     @Override
     protected void stateChangeCheck() {
-        if(miles < MIN_MILES)
-            owner.setAccountState(new SilverState(this));
-        else if(miles > MAX_MILES)
-            owner.setAccountState(new PlatiniumState(this));
+        if(getMiles() < MIN_MILES)
+            getOwner().setAccountState(new SilverState(this));
+        else if(getMiles() > MAX_MILES)
+            getOwner().setAccountState(new PlatiniumState(this));
     }
 
     @Override
     double getMilesCoefficient() {
         return 0.5;
+    }
+
+    @Override
+    public String getStatus() {
+        return "Gold";
+    }
+
+    @Override
+    public Color getStatusColor() {
+        return Color.orange;
     }
 }

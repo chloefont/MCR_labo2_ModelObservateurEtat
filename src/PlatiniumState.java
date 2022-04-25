@@ -1,3 +1,5 @@
+import java.awt.*;
+
 /**
  * Platinium state of an account
  *
@@ -7,8 +9,8 @@
  * @author Nelson Jeanrenaud
  */
 public class PlatiniumState extends AccountState {
-    protected static final int MIN_MILES = 10000;
-    protected static final int MAX_BALANCE = 100000;
+    private static final int MIN_MILES = 10000;
+    private static final int MAX_BALANCE = 100000;
 
     PlatiniumState(AccountState oldState) {
         super(oldState);
@@ -16,18 +18,35 @@ public class PlatiniumState extends AccountState {
 
     @Override
     protected void stateChangeCheck() {
-        if(miles < MIN_MILES)
-            owner.setAccountState(new GoldenState(this));
-        else if(balance > MAX_BALANCE)
-            owner.setAccountState(new SilverState(this));
+        if(getMiles() < MIN_MILES)
+            getOwner().setAccountState(new GoldenState(this));
+        else if(getBalance() > MAX_BALANCE)
+            getOwner().setAccountState(new PlatiniumStatePremium(this));
     }
 
     @Override
     double getMilesCoefficient() {
         return 1;
     }
+
+    @Override
+    public String getStatus() {
+        return "Platinium";
+    }
+
+    @Override
+    public Color getStatusColor() {
+        return Color.cyan;
+    }
 }
 
+/**
+ * Premium platinium state of the account. Particular type of platinium account that can't be downgraded
+ * even if they don't meet the requirements anymore.
+ *
+ * @version 1.0
+ * @author Nelson Jeanrenaud
+ */
 class PlatiniumStatePremium extends PlatiniumState {
 
     PlatiniumStatePremium(AccountState oldState) {
@@ -36,4 +55,9 @@ class PlatiniumStatePremium extends PlatiniumState {
 
     @Override
     protected void stateChangeCheck() {}
+
+    @Override
+    public String getStatus() {
+        return super.getStatus() + " premium";
+    }
 }
