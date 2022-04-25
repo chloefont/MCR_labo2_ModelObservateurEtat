@@ -1,9 +1,11 @@
 package ui;
 
+import Observables.Observer;
+
 import javax.swing.*;
 import java.awt.*;
 
-public abstract class InformationWindow extends JFrame {
+public abstract class InformationWindow extends JFrame implements Observer {
 
     JComponent[] components;
 
@@ -22,7 +24,11 @@ public abstract class InformationWindow extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    private void buildUI(){
+    protected void setComponents(JComponent[] components){
+        this.components = components;
+    }
+
+    protected void buildUI(){
 
         final JPanel gridPanel = new JPanel(new GridLayout(components.length,1));
 
@@ -33,5 +39,7 @@ public abstract class InformationWindow extends JFrame {
         }
         add(gridPanel);
     }
+
+
 
 }

@@ -79,6 +79,7 @@ public abstract class AccountState implements IAccountState {
         if(miles >= tMiles) {
             miles -= tMiles;
             stateChangeCheck();
+            owner.notifyObservers();
             return true;
         }
         return false;
@@ -96,6 +97,8 @@ public abstract class AccountState implements IAccountState {
             balance -= tPrice;
             miles += tMiles * getMilesCoefficient();
             stateChangeCheck();
+
+            owner.notifyObservers();
             return true;
         }
         return false;
@@ -110,6 +113,8 @@ public abstract class AccountState implements IAccountState {
             throw new IllegalArgumentException("Deposit must be strictly positive");
         balance += amount;
         stateChangeCheck();
+
+        owner.notifyObservers();
     }
 
     /**
