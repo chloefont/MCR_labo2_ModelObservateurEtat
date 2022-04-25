@@ -7,16 +7,14 @@ import java.awt.*;
 
 public abstract class InformationWindow extends JFrame implements Observer {
 
-    JComponent[] components;
+    //JComponent[] components;
 
-    InformationWindow(JComponent[] components, String windowTitle){
+    InformationWindow(String windowTitle){
         super();
-        assert components != null;
         assert windowTitle != null;
 
-        this.components = components;
         setTitle(windowTitle);
-        buildUI();
+
 
         setSize(500, 300);
         setLocationRelativeTo(null);
@@ -24,11 +22,8 @@ public abstract class InformationWindow extends JFrame implements Observer {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    protected void setComponents(JComponent[] components){
-        this.components = components;
-    }
-
-    protected void buildUI(){
+    protected void buildUI(JComponent[] components){
+        assert components != null;
 
         final JPanel gridPanel = new JPanel(new GridLayout(components.length,1));
 

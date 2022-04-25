@@ -5,8 +5,12 @@ import Observables.Observable;
 import javax.swing.*;
 
 public class ClientDetailsWindow extends InformationWindow{
+    private IClient client;
+
     ClientDetailsWindow(IClient client) {
-        super(createComponents(client), "Details of client #" + client.getId());
+        super("Details of client #" + client.getId());
+        this.client = client;
+        buildUI(createComponents(client));
         client.attach(this);
     }
 
@@ -15,10 +19,9 @@ public class ClientDetailsWindow extends InformationWindow{
         getContentPane().removeAll();
 
         if (obj instanceof IClient) {
-            setComponents(createComponents((IClient) obj));
+            buildUI(createComponents((IClient) obj));
         }
 
-        buildUI();
         validate();
 
     }
@@ -32,5 +35,12 @@ public class ClientDetailsWindow extends InformationWindow{
                 new JLabel("Status: " + client.getAccountState().getStatus()),
                 new JLabel("Last action: " + client.getAccountState().getLastAction())
         };
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+
+        client.detach(this);
     }
 }

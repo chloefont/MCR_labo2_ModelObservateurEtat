@@ -28,7 +28,7 @@ public class SilverState extends AccountState {
 
     @Override
     protected void stateChangeCheck() {
-        if(getMiles() > MAX_MILES)
+        if(getMiles() >= MAX_MILES)
             getOwner().setAccountState(new GoldenState(this));
     }
 

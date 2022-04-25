@@ -38,4 +38,8 @@ public abstract class Ticket implements ITicket {
     public String toString() {
         return name + " " + getPriceCash() + "$";
     }
+
+    public Flight getFlight() {
+        return flight;
+    }
 }

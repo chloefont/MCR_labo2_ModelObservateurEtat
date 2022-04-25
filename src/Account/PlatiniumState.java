@@ -22,7 +22,7 @@ public class PlatiniumState extends AccountState {
     protected void stateChangeCheck() {
         if(getMiles() < MIN_MILES)
             getOwner().setAccountState(new GoldenState(this));
-        else if(getBalance() > MAX_BALANCE)
+        else if(getBalance() >= MAX_BALANCE)
             getOwner().setAccountState(new PlatiniumStatePremium(this));
     }
 

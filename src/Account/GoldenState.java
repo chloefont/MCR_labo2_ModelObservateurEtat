@@ -22,7 +22,7 @@ public class GoldenState extends AccountState {
     protected void stateChangeCheck() {
         if(getMiles() < MIN_MILES)
             getOwner().setAccountState(new SilverState(this));
-        else if(getMiles() > MAX_MILES)
+        else if(getMiles() >= MAX_MILES)
             getOwner().setAccountState(new PlatiniumState(this));
     }
 

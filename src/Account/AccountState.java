@@ -1,6 +1,5 @@
 package Account;
 
-import Flights.Ticket;
 import ui.IAccountState;
 import ui.ITicket;
 
@@ -55,14 +54,14 @@ public abstract class AccountState implements IAccountState {
     protected abstract void stateChangeCheck();
 
     // TODO c'est a chier ou ça va ?
-    private double getTicketPrice(ITicket t){
+    private double getTicketPriceCash(ITicket t){
         double tPrice = t.getPriceCash();
         if(tPrice < 0)
             throw new IllegalArgumentException("Flights.Ticket price must be positive");
         return tPrice;
     }
 
-    private double getTicketMiles(ITicket t){
+    private double getTicketPriceMiles(ITicket t){
         double tMiles = t.getPriceMiles();
         if(tMiles < 0)
             throw new IllegalArgumentException("Flights.Ticket miles must be positive");
@@ -75,7 +74,7 @@ public abstract class AccountState implements IAccountState {
      * @return returns true if the ticket has been booked
      */
     public boolean bookMiles(ITicket t) {
-        double tMiles = getTicketMiles(t);
+        double tMiles = getTicketPriceMiles(t);
         if(miles >= tMiles) {
             miles -= tMiles;
             stateChangeCheck();
@@ -91,11 +90,10 @@ public abstract class AccountState implements IAccountState {
      * @return returns true if the ticket has been booked
      */
     public boolean bookCash(ITicket t){
-        double tPrice = getTicketPrice(t);
-        double tMiles = getTicketMiles(t);
+        double tPrice = getTicketPriceCash(t);
         if(balance >= tPrice) {
             balance -= tPrice;
-            miles += tMiles * getMilesCoefficient();
+            miles += t.getFlight().getDistance() * getMilesCoefficient();
             stateChangeCheck();
 
             owner.notifyObservers();

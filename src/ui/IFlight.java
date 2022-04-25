@@ -1,5 +1,6 @@
 package ui;
 
+import Flights.Flight;
 import Flights.Ticket;
 
 public interface IFlight {
