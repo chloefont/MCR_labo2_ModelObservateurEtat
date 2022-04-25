@@ -18,7 +18,8 @@ public class App implements Runnable{
                 new Flight("Paris - Genève", 335, 115),
                 new Flight("Amsterdam - Berlin", 407, 78),
                 new Flight("Paris - Londres", 291, 120),
-                new Flight("Monaco - Lisbonne", 1141, 149)
+                new Flight("Monaco - Lisbonne", 1141, 149),
+                new Flight("test", 40, 40)
         };
 
         new MainWindow(clients, flights);

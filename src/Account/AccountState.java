@@ -2,6 +2,7 @@ package Account;
 
 import Flights.Ticket;
 import ui.IAccountState;
+import ui.ITicket;
 
 import java.awt.*;
 
@@ -54,14 +55,14 @@ public abstract class AccountState implements IAccountState {
     protected abstract void stateChangeCheck();
 
     // TODO c'est a chier ou ça va ?
-    private double getTicketPrice(Ticket t){
+    private double getTicketPrice(ITicket t){
         double tPrice = t.getPriceCash();
         if(tPrice < 0)
             throw new IllegalArgumentException("Flights.Ticket price must be positive");
         return tPrice;
     }
 
-    private double getTicketMiles(Ticket t){
+    private double getTicketMiles(ITicket t){
         double tMiles = t.getPriceMiles();
         if(tMiles < 0)
             throw new IllegalArgumentException("Flights.Ticket miles must be positive");
@@ -73,7 +74,7 @@ public abstract class AccountState implements IAccountState {
      * @param t the ticket the client is trying to buy
      * @return returns true if the ticket has been booked
      */
-    public boolean bookMiles(Ticket t) {
+    public boolean bookMiles(ITicket t) {
         double tMiles = getTicketMiles(t);
         if(miles >= tMiles) {
             miles -= tMiles;
@@ -88,7 +89,7 @@ public abstract class AccountState implements IAccountState {
      * @param t the ticket the client is trying to buy
      * @return returns true if the ticket has been booked
      */
-    public boolean bookCash(Ticket t){
+    public boolean bookCash(ITicket t){
         double tPrice = getTicketPrice(t);
         double tMiles = getTicketMiles(t);
         if(balance >= tPrice) {

@@ -1,6 +1,8 @@
 package ui;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 
 public class MainWindow extends JFrame {
@@ -36,7 +38,7 @@ public class MainWindow extends JFrame {
         gridPanel.add(panel4);
 
         panel1.setSize(panel1.getWidth(), 10);
-        panel1.add(new JLabel("Account.Client"));
+        panel1.add(new JLabel("Client"));
         final JComboBox<IClient> clientComboBox = new JComboBox<>(clients);
         panel1.add(clientComboBox);
 
@@ -48,11 +50,42 @@ public class MainWindow extends JFrame {
 
         panel2.setSize(panel2.getWidth(), 10);
         panel2.add(new JLabel("Credits"));
-        panel2.add(new JTextField(10));
-        panel2.add(new JButton("Add"));
+        JFormattedTextField amountField = new JFormattedTextField(10);
+        amountField.setColumns(7);
+
+        // source : https://stackoverflow.com/questions/33348481/restrict-input-of-jtextfield-to-double-numbers
+        amountField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                Runnable format = new Runnable() {
+                    @Override
+                    public void run() {
+                        String text = amountField.getText();
+                        if(!text.matches("\\d*(\\.\\d{0,2})?")){
+                            amountField.setText(text.substring(0,text.length()-1));
+                        }
+                    }
+                };
+                SwingUtilities.invokeLater(format);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {}
+            @Override
+            public void changedUpdate(DocumentEvent e) {}
+        });
+
+        panel2.add(amountField);
+        JButton addButton = new JButton("Add");
+
+        addButton.addActionListener(e -> {
+            IClient selectedClient = (IClient) clientComboBox.getSelectedItem();
+            selectedClient.getAccountState().deposit(Double.parseDouble(amountField.getText()));
+        });
+        panel2.add(addButton);
 
         panel3.setSize(panel3.getWidth(), 10);
-        panel3.add(new JLabel("Flights.Flight"));
+        panel3.add(new JLabel("Flight"));
         final JComboBox<IFlight> flighttComboBox = new JComboBox<>(flights);
         panel3.add(flighttComboBox);
 
@@ -67,11 +100,28 @@ public class MainWindow extends JFrame {
             }
 
         });
-        // TODO: dynamic
 
         panel3.add(flightCatComboBox);
-        panel3.add(new JButton("Book (Cash)"));
-        panel3.add(new JButton("Book (Miles)"));
+
+        JButton bookCashButton = new JButton("Book (Cash)");
+        JButton bookMilesButton = new JButton("Book (Miles)");
+
+        bookCashButton.addActionListener(e -> {
+            ITicket selectedTicket = (ITicket) flightCatComboBox.getSelectedItem();
+            IClient selectedClient = (IClient) clientComboBox.getSelectedItem();
+            //TODO fait rien avec valeur retour
+            selectedClient.getAccountState().bookCash(selectedTicket);
+        });
+
+        bookMilesButton.addActionListener(e -> {
+            ITicket selectedTicket = (ITicket) flightCatComboBox.getSelectedItem();
+            IClient selectedClient = (IClient) clientComboBox.getSelectedItem();
+            //TODO fait rien avec valeur retour
+            selectedClient.getAccountState().bookMiles(selectedTicket);
+        });
+
+        panel3.add(bookCashButton);
+        panel3.add(bookMilesButton);
 
         final JButton statuses = new JButton("Statuses");
         statuses.addActionListener(e ->{

@@ -1,5 +1,7 @@
 package ui;
 
+import Flights.Ticket;
+
 import java.awt.Color;
 
 public interface IAccountState {
@@ -8,4 +10,7 @@ public interface IAccountState {
     String getStatus();
     String getLastAction();
     Color getStatusColor();
+    void deposit(double amount);
+    boolean bookCash(ITicket t);
+    boolean bookMiles(ITicket t);
 }
