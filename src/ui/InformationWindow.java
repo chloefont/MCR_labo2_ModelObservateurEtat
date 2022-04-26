@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-public abstract class InformationWindow extends JFrame implements Observer {
+public abstract class InformationWindow extends JFrame {
     public static final int FRAME_WIDTH = 500;
     public static final int FRAME_HEIGHT = 300;
 

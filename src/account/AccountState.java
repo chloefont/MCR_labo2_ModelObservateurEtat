@@ -67,7 +67,7 @@ public abstract class AccountState implements IAccountState {
      * Use it to change the state of an account.
      * @param oldState AccountState to copy.
      */
-    AccountState(AccountState oldState) {
+    public AccountState(AccountState oldState) {
         if (oldState == null)
             throw new IllegalArgumentException("AccountState must not be null");
 

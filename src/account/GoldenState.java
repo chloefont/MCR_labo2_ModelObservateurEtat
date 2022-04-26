@@ -14,7 +14,7 @@ public class GoldenState extends AccountState {
     private static final int MIN_MILES = 1000;
     private static final int MAX_MILES = 10000;
 
-    GoldenState(AccountState oldState) {
+    public GoldenState(AccountState oldState) {
         super(oldState);
     }
 

@@ -14,7 +14,7 @@ public class PlatiniumState extends AccountState {
     private static final int MIN_MILES = 10000;
     private static final int MAX_BALANCE = 100000;
 
-    PlatiniumState(AccountState oldState) {
+    public PlatiniumState(AccountState oldState) {
         super(oldState);
     }
 
@@ -51,7 +51,7 @@ public class PlatiniumState extends AccountState {
  */
 class PlatiniumStatePremium extends PlatiniumState {
 
-    PlatiniumStatePremium(AccountState oldState) {
+    public PlatiniumStatePremium(AccountState oldState) {
         super(oldState);
     }
 
