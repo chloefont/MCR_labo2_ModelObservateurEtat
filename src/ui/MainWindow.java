@@ -1,12 +1,6 @@
 package ui;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.FlowLayout;
@@ -116,15 +110,18 @@ public class MainWindow extends JFrame {
         bookCashButton.addActionListener(e -> {
             ITicket selectedTicket = (ITicket) flightCatComboBox.getSelectedItem();
             IClient selectedClient = (IClient) clientComboBox.getSelectedItem();
-            //TODO fait rien avec valeur retour
-            selectedClient.getAccountState().bookCash(selectedTicket);
+
+            if (!selectedClient.getAccountState().bookCash(selectedTicket))
+                JOptionPane.showMessageDialog(null, "Not enough money");
+
         });
 
         bookMilesButton.addActionListener(e -> {
             ITicket selectedTicket = (ITicket) flightCatComboBox.getSelectedItem();
             IClient selectedClient = (IClient) clientComboBox.getSelectedItem();
-            //TODO fait rien avec valeur retour
-            selectedClient.getAccountState().bookMiles(selectedTicket);
+
+            if (!selectedClient.getAccountState().bookMiles(selectedTicket))
+                JOptionPane.showMessageDialog(null, "Not enough miles");
         });
 
         panel3.add(bookCashButton);

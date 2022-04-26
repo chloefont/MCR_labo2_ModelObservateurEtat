@@ -5,7 +5,7 @@ import observables.Observable;
 import javax.swing.JLabel;
 
 public class ClientDetailsWindow extends InformationWindow{
-    private IClient client;
+    private final IClient client;
 
     ClientDetailsWindow(IClient client) {
         super("Details of client #" + client.getId());
