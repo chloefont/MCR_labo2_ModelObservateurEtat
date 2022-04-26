@@ -1,10 +1,7 @@
 package ui;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.util.Arrays;
 
 /**
@@ -37,6 +34,7 @@ public class MainWindow extends JFrame {
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setLocationRelativeTo(null);
         setVisible(true);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -90,15 +88,15 @@ public class MainWindow extends JFrame {
         // Book flights
         panel3.setSize(panel3.getWidth(), 10);
         panel3.add(new JLabel("Flight"));
-        final JComboBox<IFlight> flighttComboBox = new JComboBox<>(flights);
-        panel3.add(flighttComboBox);
+        final JComboBox<IFlight> flightComboBox = new JComboBox<>(flights);
+        panel3.add(flightComboBox);
 
-        IFlight selectedFlight = (IFlight) flighttComboBox.getSelectedItem();
+        IFlight selectedFlight = (IFlight) flightComboBox.getSelectedItem();
         JComboBox<ITicket> flightCatComboBox = new JComboBox<>(selectedFlight.getTickets());
 
-        flighttComboBox.addActionListener(e -> {
+        flightComboBox.addActionListener(e -> {
             flightCatComboBox.removeAllItems();
-            for(ITicket t : ((IFlight) flighttComboBox.getSelectedItem()).getTickets()) {
+            for(ITicket t : ((IFlight) flightComboBox.getSelectedItem()).getTickets()) {
                 flightCatComboBox.addItem(t);
 
             }
