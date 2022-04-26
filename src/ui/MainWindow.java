@@ -1,6 +1,9 @@
 package ui;
 
 import javax.swing.*;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.util.Arrays;
 
@@ -11,6 +14,7 @@ public class MainWindow extends JFrame {
 
     private static final int FRAME_WIDTH = 500;
     private static final int FRAME_HEIGHT = 300;
+    private static final int LIMIT_CHARS_AMOUNT = 20;
 
     // Clients in the system
     private final IClient[] clients;
@@ -69,7 +73,16 @@ public class MainWindow extends JFrame {
         panel2.setSize(panel2.getWidth(), 10);
         panel2.add(new JLabel("Credits"));
         JTextField amountField = new JTextField(10);
-
+        // Limit the characters in the text field
+        amountField.setDocument(new PlainDocument() {
+            public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
+                if (str == null)
+                    return;
+                if ((getLength() + str.length()) <= LIMIT_CHARS_AMOUNT) {
+                    super.insertString(offset, str, attr);
+                }
+            }
+        });
 
         panel2.add(amountField);
         JButton addButton = new JButton("Add");
