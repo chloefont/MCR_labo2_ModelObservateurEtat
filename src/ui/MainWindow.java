@@ -12,6 +12,9 @@ import java.util.Arrays;
  */
 public class MainWindow extends JFrame {
 
+    private static final int FRAME_WIDTH = 500;
+    private static final int FRAME_HEIGHT = 300;
+
     // Clients in the system
     private final IClient[] clients;
     // Flights in the system
@@ -31,7 +34,7 @@ public class MainWindow extends JFrame {
 
         buildUI();
         pack();
-        setSize(500, 300);
+        setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

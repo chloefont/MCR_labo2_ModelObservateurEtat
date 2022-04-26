@@ -6,9 +6,9 @@ package flights;
  * @author Luca Coduri
  * @author Chloé Fontaine
  */
-public class FirstClassTicket extends Ticket {
+class FirstClassTicket extends Ticket {
 
-    public FirstClassTicket(Flight flight) {
+    FirstClassTicket(Flight flight) {
         super("FirstClass", 5, 30, flight);
     }
 }

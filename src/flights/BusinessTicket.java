@@ -6,8 +6,8 @@ package flights;
  * @author Luca Coduri
  * @author Chloé Fontaine
  */
-public class BusinessTicket extends Ticket {
-    public BusinessTicket(Flight flight) {
+class BusinessTicket extends Ticket {
+    BusinessTicket(Flight flight) {
         super("Business", 2, 5, flight);
     }
 }

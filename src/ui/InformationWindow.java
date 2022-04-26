@@ -1,12 +1,7 @@
 package ui;
 
-import observables.Observer;
-
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Windows that holds divserse information
