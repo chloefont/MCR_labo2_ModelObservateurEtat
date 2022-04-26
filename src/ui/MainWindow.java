@@ -78,7 +78,7 @@ public class MainWindow extends JFrame {
             IClient selectedClient = (IClient) clientComboBox.getSelectedItem();
             try {
                 selectedClient.getAccountState().deposit(Double.parseDouble(amountField.getText()));
-            } catch (Exception ex) {
+            } catch (IllegalArgumentException ex) {
                 JOptionPane.showMessageDialog(this, "Invalid amount");
             }
 

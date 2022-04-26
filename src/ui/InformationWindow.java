@@ -21,9 +21,11 @@ public abstract class InformationWindow extends JDialog {
 
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setLocationRelativeTo(null);
+        setVisible(true);
         setLayout(new GridLayout());
         setResizable(false);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
     }
 
     protected void setWindowTitle(String title){
@@ -46,6 +48,5 @@ public abstract class InformationWindow extends JDialog {
             gridPanel.add(panel);
         }
         getContentPane().add(gridPanel);
-        setVisible(true);
     }
 }
