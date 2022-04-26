@@ -11,9 +11,15 @@ import java.awt.Color;
  * @author Nelson Jeanrenaud
  */
 public class PlatiniumState extends AccountState {
+    // Minimum requirement of miles to get a platinium account
     private static final int MIN_MILES = 10000;
+    // Maximum requirement of miles to get a platinium account
     private static final int MAX_BALANCE = 100000;
 
+    /**
+     * Creates a new platinium account from an old one. Use it to change the state of an account
+     * @param oldState The old state of the account
+     */
     public PlatiniumState(AccountState oldState) {
         super(oldState);
     }
@@ -51,6 +57,10 @@ public class PlatiniumState extends AccountState {
  */
 class PlatiniumStatePremium extends PlatiniumState {
 
+    /**
+     * Creates a new premium platinium account from an old one. Use it to change the state of an account
+     * @param oldState The old state of the account
+     */
     public PlatiniumStatePremium(AccountState oldState) {
         super(oldState);
     }

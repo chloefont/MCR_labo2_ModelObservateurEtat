@@ -1,7 +1,7 @@
 package observables;
 
 /**
- * Represents an observable object for the UI.
+ * Represents an observable object.
  * @version 1.0
  * @author Luca Coduri
  * @author Chloé Fontaine
