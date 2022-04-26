@@ -14,6 +14,11 @@ import java.awt.*;
  * @author Nelson Jeanrenaud
  */
 public abstract class AccountState implements IAccountState {
+
+    enum Action {
+        Deposit, BookMiles, BookCash
+    }
+
     /**
      * Amount of dollars available on this account
      * This amount can't be negative
@@ -29,6 +34,8 @@ public abstract class AccountState implements IAccountState {
      * Owner of this account
      */
     private final Client owner;
+
+    private Action lastAction;
 
     /**
      * Create an account for a client
@@ -76,8 +83,11 @@ public abstract class AccountState implements IAccountState {
     public boolean bookMiles(ITicket t) {
         double tMiles = getTicketPriceMiles(t);
         if(miles >= tMiles) {
+            // TODO doit être crédité du nombre de miles du vol?
             miles -= tMiles;
             stateChangeCheck();
+            lastAction = Action.BookMiles;
+
             owner.notifyObservers();
             return true;
         }
@@ -95,6 +105,7 @@ public abstract class AccountState implements IAccountState {
             balance -= tPrice;
             miles += t.getFlight().getDistance() * getMilesCoefficient();
             stateChangeCheck();
+            lastAction = Action.BookCash;
 
             owner.notifyObservers();
             return true;
@@ -111,6 +122,7 @@ public abstract class AccountState implements IAccountState {
             throw new IllegalArgumentException("Deposit must be strictly positive");
         balance += amount;
         stateChangeCheck();
+        lastAction = Action.Deposit;
 
         owner.notifyObservers();
     }
@@ -120,19 +132,26 @@ public abstract class AccountState implements IAccountState {
      * amount of miles added to the balance
      */
     abstract double getMilesCoefficient();
+
     public abstract String getStatus();
+
     public abstract Color getStatusColor();
 
-    // TODO améliorer l'implémentation du code ci-dessous
     public double getBalance(){
         return balance;
     }
-    public double getMiles(){
+
+    public double getMiles() {
         return miles;
     }
-    public String getLastAction(){
-        return "";
+
+    public String getLastAction() {
+        if (lastAction == null)
+            return "";
+        return lastAction.toString();
     }
+
+    //TODO faire copie ou pas?
     protected Client getOwner() {
         return owner;
     }

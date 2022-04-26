@@ -12,7 +12,7 @@ import java.awt.*;
  */
 public class GoldenState extends AccountState {
     private static final int MIN_MILES = 1000;
-    private static final int MAX_MILES = 10000;
+    private static final int MAX_MILES = 10000; //TODO faut changer 2 fois la valeur pour être cohérent (crédit / miles ou les 2?)
 
     GoldenState(AccountState oldState) {
         super(oldState);
