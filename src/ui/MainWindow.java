@@ -1,10 +1,7 @@
 package ui;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.util.Arrays;
 
 /**
@@ -38,6 +35,7 @@ public class MainWindow extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
     }
 
     /**
@@ -63,7 +61,7 @@ public class MainWindow extends JFrame {
 
         final JButton detailsButton = new JButton("Details");
         detailsButton.addActionListener(e -> {
-            new ClientDetailsWindow((IClient) clientComboBox.getSelectedItem());
+            new ClientDetailsWindow(this, (IClient) clientComboBox.getSelectedItem());
         } );
         panel1.add(detailsButton);
 
@@ -131,7 +129,7 @@ public class MainWindow extends JFrame {
         // Show account states
         final JButton statuses = new JButton("Statuses");
         statuses.addActionListener(e ->{
-            new StatusesWindow(clients);
+            new StatusesWindow(this, clients);
         });
 
         panel4.add(statuses);

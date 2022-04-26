@@ -9,21 +9,21 @@ import java.awt.*;
  * @author Chloé Fontaine
  * @version 1.0
  */
-public abstract class InformationWindow extends JFrame {
+public abstract class InformationWindow extends JDialog {
     public static final int FRAME_WIDTH = 500;
     public static final int FRAME_HEIGHT = 300;
 
     /**
      * Creates a new InformationWindow.
      */
-    InformationWindow(){
-        super();
-
+    InformationWindow(Frame owner){
+        super(owner, true);
 
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setLocationRelativeTo(null);
-        setVisible(true);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new GridLayout());
+        setResizable(false);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }
 
     protected void setWindowTitle(String title){
@@ -45,6 +45,7 @@ public abstract class InformationWindow extends JFrame {
             panel.add(component);
             gridPanel.add(panel);
         }
-        add(gridPanel);
+        getContentPane().add(gridPanel);
+        setVisible(true);
     }
 }

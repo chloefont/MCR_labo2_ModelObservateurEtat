@@ -1,15 +1,16 @@
 package ui;
 
 import javax.swing.*;
-import java.util.Arrays;
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class StatusesWindow extends InformationWindow {
     static final String WINDOW_TITLE = "Statuses";
     private final ArrayList<ClientLabel> labels = new ArrayList<>();
 
-    StatusesWindow(IClient[] clients) {
-        super();
+    StatusesWindow(Frame owner, IClient[] clients) {
+        super(owner);
 
         if (clients == null)
             throw new IllegalArgumentException("clients must not be null");

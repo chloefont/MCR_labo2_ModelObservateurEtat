@@ -3,7 +3,8 @@ package ui;
 import observables.Observable;
 import observables.Observer;
 
-import javax.swing.JLabel;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Window that displays the details of a client.
@@ -19,8 +20,8 @@ public class ClientDetailsWindow extends InformationWindow implements Observer {
      * Creates a new ClientDetailsWindow.
      * @param client the client to display
      */
-    ClientDetailsWindow(IClient client) {
-        super();
+    ClientDetailsWindow(Frame owner, IClient client) {
+        super(owner);
 
         if (client == null)
             throw new IllegalArgumentException("Client must not be null");
