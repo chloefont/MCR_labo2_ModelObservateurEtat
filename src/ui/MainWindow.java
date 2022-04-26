@@ -5,6 +5,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.util.Arrays;
 
 public class MainWindow extends JFrame {
 
@@ -15,7 +16,7 @@ public class MainWindow extends JFrame {
         super();
         assert clients != null;
         assert flights != null;
-        this.clients = clients;
+        this.clients = Arrays.stream(clients).sorted().toArray(IClient[]::new);
         this.flights = flights;
 
         buildUI();

@@ -92,4 +92,14 @@ public class Client extends Observable implements IClient {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public int compareTo(IClient o) {
+        int result = lastname.compareTo(o.getLastName());
+
+        if (result == 0)
+            result = firstname.compareTo(o.getFirstName());
+
+        return result;
+    }
 }

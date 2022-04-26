@@ -1,10 +1,11 @@
 package ui;
 
 import observables.Observable;
+import observables.Observer;
 
 import javax.swing.JLabel;
 
-public class ClientDetailsWindow extends InformationWindow{
+public class ClientDetailsWindow extends InformationWindow implements Observer {
     private final IClient client;
 
     ClientDetailsWindow(IClient client) {
