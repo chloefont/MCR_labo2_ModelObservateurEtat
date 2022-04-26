@@ -53,8 +53,10 @@ public abstract class AccountState implements IAccountState {
     public AccountState(Client owner) {
         if(owner == null)
             throw new IllegalArgumentException("Accounts must owned by a client");
+
         if(owner.hasAccount())
             throw new IllegalArgumentException("Clients can't have two accounts");
+
         this.owner = owner;
     }
 
@@ -64,6 +66,9 @@ public abstract class AccountState implements IAccountState {
      * @param oldState AccountState to copy.
      */
     AccountState(AccountState oldState) {
+        if (oldState == null)
+            throw new IllegalArgumentException("AccountState must not be null");
+
         this.balance = oldState.balance;
         this.miles = oldState.miles;
         this.owner = oldState.owner;
@@ -77,8 +82,11 @@ public abstract class AccountState implements IAccountState {
     /**
      * Get the cash price price of a ticket.
      */
-    private double getTicketPriceCash(ITicket t){
-        double tPrice = t.getPriceCash();
+    private double getTicketPriceCash(ITicket ticket){
+        if (ticket == null)
+            throw new IllegalArgumentException("Ticket must not be null");
+
+        double tPrice = ticket.getPriceCash();
         if(tPrice < 0)
             throw new IllegalArgumentException("Flights.Ticket price must be positive");
         return tPrice;
@@ -87,8 +95,11 @@ public abstract class AccountState implements IAccountState {
     /**
      * Get the miles price of a ticket.
      */
-    private double getTicketPriceMiles(ITicket t){
-        double tMiles = t.getPriceMiles();
+    private double getTicketPriceMiles(ITicket ticket){
+        if (ticket == null)
+            throw new IllegalArgumentException("Ticket must not be null");
+
+        double tMiles = ticket.getPriceMiles();
         if(tMiles < 0)
             throw new IllegalArgumentException("Flights.Ticket miles must be positive");
         return tMiles;
@@ -107,11 +118,14 @@ public abstract class AccountState implements IAccountState {
     /**
      * Book a ticket using the miles on the account.
      * Notify the observers of the account.
-     * @param t the ticket the client is trying to buy.
+     * @param ticket the ticket the client is trying to buy.
      * @return returns true if the ticket has been booked.
      */
-    public boolean bookMiles(ITicket t) {
-        double tMiles = getTicketPriceMiles(t);
+    public boolean bookMiles(ITicket ticket) {
+        if (ticket == null)
+            throw new IllegalArgumentException("Ticket must not be null");
+
+        double tMiles = getTicketPriceMiles(ticket);
         if(miles >= tMiles) {
             miles -= tMiles;
             actionPerformed(Action.BookMiles);
@@ -123,14 +137,17 @@ public abstract class AccountState implements IAccountState {
     /**
      * Book a ticket using the money on the account.
      * Notify the observers of the account.
-     * @param t the ticket the client is trying to buy.
+     * @param ticket the ticket the client is trying to buy.
      * @return returns true if the ticket has been booked.
      */
-    public boolean bookCash(ITicket t){
-        double tPrice = getTicketPriceCash(t);
+    public boolean bookCash(ITicket ticket){
+        if (ticket == null)
+            throw new IllegalArgumentException("Ticket must not be null");
+
+        double tPrice = getTicketPriceCash(ticket);
         if(balance >= tPrice) {
             balance -= tPrice;
-            miles += t.getFlight().getDistance() * getMilesCoefficient();
+            miles += ticket.getFlight().getDistance() * getMilesCoefficient();
             actionPerformed(Action.BookCash);
             return true;
         }

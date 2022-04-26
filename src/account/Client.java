@@ -38,6 +38,9 @@ public class Client extends Observable implements IClient {
      * Change the account state of this client
      */
     void setAccountState(AccountState account) {
+        if (account == null)
+            throw new IllegalArgumentException("Account must not be null");
+
         this.account = account;
     }
 

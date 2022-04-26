@@ -11,7 +11,7 @@ import java.util.List;
  */
 public abstract class Observable implements IObservable{
     // List of observers
-    private List<Observer> observers = new ArrayList<>();
+    private final List<Observer> observers = new ArrayList<>();
     /**
      * Attaches an observer to the observable object.
      * @param o the observer to attach.

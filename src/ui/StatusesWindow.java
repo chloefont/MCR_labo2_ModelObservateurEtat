@@ -13,8 +13,12 @@ public class StatusesWindow extends InformationWindow {
     private HashMap<IClient, JLabel> idToLabelMap = new HashMap();
 
     StatusesWindow(IClient[] clients) {
-        super(WINDOW_TITLE);
+        super();
 
+        if (clients == null)
+            throw new IllegalArgumentException("clients must not be null");
+
+        setWindowTitle(WINDOW_TITLE);
         buildUI(createLabels(clients));
 
         for (IClient client : clients) {
@@ -23,6 +27,9 @@ public class StatusesWindow extends InformationWindow {
     }
 
     private JLabel[] createLabels(IClient[] clients){
+        if (clients == null)
+            throw new IllegalArgumentException("clients must not be null");
+
         return (JLabel[]) Arrays.stream(clients)
                 .map(this::createLabel).toArray(JLabel[]::new);
     }

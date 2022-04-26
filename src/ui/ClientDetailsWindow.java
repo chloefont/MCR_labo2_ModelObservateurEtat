@@ -8,7 +8,12 @@ public class ClientDetailsWindow extends InformationWindow{
     private final IClient client;
 
     ClientDetailsWindow(IClient client) {
-        super("Details of client #" + client.getId());
+        super();
+
+        if (client == null)
+            throw new IllegalArgumentException("Client must not be null");
+
+        setWindowTitle("Details of client #" + client.getId());
         this.client = client;
         buildUI(createComponents(client));
         client.attach(this);

@@ -14,11 +14,8 @@ public abstract class InformationWindow extends JFrame implements Observer {
 
     //JComponent[] components;
 
-    InformationWindow(String windowTitle){
+    InformationWindow(){
         super();
-        assert windowTitle != null;
-
-        setTitle(windowTitle);
 
 
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -27,8 +24,13 @@ public abstract class InformationWindow extends JFrame implements Observer {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
+    protected void setWindowTitle(String title){
+        setTitle(title);
+    }
+
     protected void buildUI(JComponent[] components){
-        assert components != null;
+        if (components == null)
+            throw new IllegalArgumentException("Components must not be null");
 
         final JPanel gridPanel = new JPanel(new GridLayout(components.length,1));
 
