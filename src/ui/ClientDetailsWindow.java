@@ -15,7 +15,7 @@ public class ClientDetailsWindow extends InformationWindow{
     }
 
     @Override
-    public void update(Observable obj, Object arg) {
+    public void update(Observable obj) {
         getContentPane().removeAll();
 
         if (obj instanceof IClient) {

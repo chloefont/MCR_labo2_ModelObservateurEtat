@@ -33,7 +33,7 @@ public abstract class Observable implements IObservable{
      */
     public void notifyObservers() {
         for (Observer o: observers) {
-            o.update(this, null);
+            o.update(this);
         }
     }
 }
