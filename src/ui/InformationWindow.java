@@ -2,10 +2,15 @@ package ui;
 
 import Observables.Observer;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 public abstract class InformationWindow extends JFrame implements Observer {
+    public static final int FRAME_WIDTH = 500;
+    public static final int FRAME_HEIGHT = 300;
 
     //JComponent[] components;
 
@@ -16,7 +21,7 @@ public abstract class InformationWindow extends JFrame implements Observer {
         setTitle(windowTitle);
 
 
-        setSize(500, 300);
+        setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

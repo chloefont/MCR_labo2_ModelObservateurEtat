@@ -3,7 +3,7 @@ package Account;
 import ui.IAccountState;
 import ui.ITicket;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * Abstract State Object of the State Pattern.

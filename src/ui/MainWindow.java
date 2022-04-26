@@ -1,14 +1,21 @@
 package ui;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import java.awt.*;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 public class MainWindow extends JFrame {
 
-    IClient[] clients;
-    IFlight[] flights;
+    private final IClient[] clients;
+    private final IFlight[] flights;
 
     public MainWindow(IClient[] clients, IFlight[] flights) {
         super();

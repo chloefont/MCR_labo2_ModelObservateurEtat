@@ -1,6 +1,5 @@
 package Observables;
 
-import Observables.Observable;
 /**
  * Represent an observer object.
  */

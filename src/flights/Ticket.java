@@ -1,6 +1,5 @@
 package Flights;
 
-import Flights.Flight;
 import ui.ITicket;
 import Account.Client;
 
@@ -14,10 +13,10 @@ import Account.Client;
  * @author Nelson Jeanrenaud
  */
 public abstract class Ticket implements ITicket {
-    private String name;
+    private final String name;
     private final int priceCoefficient;
     private final int milesCoefficient;
-    private Flight flight;
+    private final Flight flight;
 
     protected Ticket(String name, int priceCoefficient, int milesCoefficient, Flight flight) {
         this.name = name;

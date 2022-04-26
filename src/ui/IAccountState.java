@@ -1,7 +1,5 @@
 package ui;
 
-import Flights.Ticket;
-
 import java.awt.Color;
 
 public interface IAccountState {
