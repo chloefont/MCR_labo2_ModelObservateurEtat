@@ -7,11 +7,21 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.Arrays;
 
+/**
+ * Main Window of the application
+ */
 public class MainWindow extends JFrame {
 
+    // Clients in the system
     private final IClient[] clients;
+    // Flights in the system
     private final IFlight[] flights;
 
+    /** 
+     * Creates a new MainWindow
+     * @param clients Clients in the system
+     * @param flights Flights in the system
+     */
     public MainWindow(IClient[] clients, IFlight[] flights) {
         super();
         assert clients != null;
@@ -27,6 +37,9 @@ public class MainWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    /**
+     * Builds the UI of the window and filling it with components
+     */
     private void buildUI() {
         final JPanel gridPanel = new JPanel(new GridLayout(4,1));
         final JPanel panel1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 5,5));

@@ -8,12 +8,19 @@ import javax.swing.JPanel;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
+/**
+ * Windows that holds divserse information
+ * @author Luca Coduri
+ * @author Chloé Fontaine
+ * @version 1.0
+ */
 public abstract class InformationWindow extends JFrame {
     public static final int FRAME_WIDTH = 500;
     public static final int FRAME_HEIGHT = 300;
 
-    //JComponent[] components;
-
+    /**
+     * Creates a new InformationWindow.
+     */
     InformationWindow(){
         super();
 
@@ -28,6 +35,10 @@ public abstract class InformationWindow extends JFrame {
         setTitle(title);
     }
 
+    /**
+     * Builds the UI of the window and filling it with components
+     * @param components the components to add to the window
+     */
     protected void buildUI(JComponent[] components){
         if (components == null)
             throw new IllegalArgumentException("Components must not be null");
@@ -41,7 +52,4 @@ public abstract class InformationWindow extends JFrame {
         }
         add(gridPanel);
     }
-
-
-
 }
