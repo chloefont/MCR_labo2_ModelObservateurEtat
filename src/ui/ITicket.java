@@ -1,6 +1,6 @@
 package ui;
 
-import Flights.Flight;
+import flights.Flight;
 
 public interface ITicket {
     double getPriceMiles();

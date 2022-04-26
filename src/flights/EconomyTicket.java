@@ -1,4 +1,4 @@
-package Flights;
+package flights;
 
 public class EconomyTicket extends Ticket {
     public EconomyTicket(Flight flight) {

@@ -1,8 +1,7 @@
-package Account;
+package account;
 
 import ui.IAccountState;
 import ui.ITicket;
-
 import java.awt.Color;
 
 /**

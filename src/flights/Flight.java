@@ -1,6 +1,6 @@
-package Flights;
+package flights;
 
-import Account.Client;
+import account.Client;
 import ui.IFlight;
 
 /**

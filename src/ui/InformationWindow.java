@@ -1,6 +1,6 @@
 package ui;
 
-import Observables.Observer;
+import observables.Observer;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;

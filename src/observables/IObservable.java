@@ -1,4 +1,4 @@
-package Observables;
+package observables;
 
 /**
  * Represents an observable object for the UI.

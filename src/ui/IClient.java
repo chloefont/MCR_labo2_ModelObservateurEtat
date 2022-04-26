@@ -1,6 +1,6 @@
 package ui;
 
-import Observables.IObservable;
+import observables.IObservable;
 
 public interface IClient extends IObservable {
     int getId();

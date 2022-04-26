@@ -1,6 +1,6 @@
 package ui;
 
-import Observables.Observable;
+import observables.Observable;
 
 import javax.swing.JLabel;
 

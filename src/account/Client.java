@@ -1,6 +1,6 @@
-package Account;
+package account;
 
-import Observables.Observable;
+import observables.Observable;
 import ui.IAccountState;
 import ui.IClient;
 

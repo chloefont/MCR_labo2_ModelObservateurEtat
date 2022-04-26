@@ -1,5 +1,5 @@
-import Account.Client;
-import Flights.Flight;
+import account.Client;
+import flights.Flight;
 import ui.MainWindow;
 
 public class App implements Runnable{

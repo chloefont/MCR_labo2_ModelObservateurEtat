@@ -1,4 +1,4 @@
-package Observables;
+package observables;
 
 /**
  * Represent an observer object.

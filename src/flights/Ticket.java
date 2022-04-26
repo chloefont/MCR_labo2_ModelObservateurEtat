@@ -1,7 +1,7 @@
-package Flights;
+package flights;
 
 import ui.ITicket;
-import Account.Client;
+import account.Client;
 
 /**
  * Tickets.Flights.Ticket Object
