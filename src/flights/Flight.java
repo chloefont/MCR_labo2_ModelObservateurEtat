@@ -1,7 +1,9 @@
-package Flights;
+package flights;
 
-import Account.Client;
+import account.Client;
 import ui.IFlight;
+
+import java.util.Arrays;
 
 /**
  * Flights.Flight Object
@@ -23,8 +25,8 @@ public class Flight implements IFlight {
     private double price;
 
     private Ticket[] tickets = {
-            new BusinessTicket(this),
             new EconomyTicket(this),
+            new BusinessTicket(this),
             new FirstClassTicket(this)
     };
 
@@ -51,8 +53,7 @@ public class Flight implements IFlight {
         return name + " (" + distance + " miles)";
     }
 
-    // TODO doit faire copie?
     public Ticket[] getTickets() {
-        return tickets;
+        return Arrays.copyOf(tickets, tickets.length);
     }
 }

@@ -1,4 +1,4 @@
-package Observables;
+package observables;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  */
 public abstract class Observable implements IObservable{
     // List of observers
-    private List<Observer> observers = new ArrayList<>();
+    private final List<Observer> observers = new ArrayList<>();
     /**
      * Attaches an observer to the observable object.
      * @param o the observer to attach.
@@ -33,7 +33,7 @@ public abstract class Observable implements IObservable{
      */
     public void notifyObservers() {
         for (Observer o: observers) {
-            o.update(this, null);
+            o.update(this);
         }
     }
 }

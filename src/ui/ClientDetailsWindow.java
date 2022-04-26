@@ -1,21 +1,27 @@
 package ui;
 
-import Observables.Observable;
+import observables.Observable;
+import observables.Observer;
 
 import javax.swing.JLabel;
 
-public class ClientDetailsWindow extends InformationWindow{
-    private IClient client;
+public class ClientDetailsWindow extends InformationWindow implements Observer {
+    private final IClient client;
 
     ClientDetailsWindow(IClient client) {
-        super("Details of client #" + client.getId());
+        super();
+
+        if (client == null)
+            throw new IllegalArgumentException("Client must not be null");
+
+        setWindowTitle("Details of client #" + client.getId());
         this.client = client;
         buildUI(createComponents(client));
         client.attach(this);
     }
 
     @Override
-    public void update(Observable obj, Object arg) {
+    public void update(Observable obj) {
         getContentPane().removeAll();
 
         if (obj instanceof IClient) {

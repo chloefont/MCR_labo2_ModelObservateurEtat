@@ -1,6 +1,6 @@
 package ui;
 
-import Flights.Ticket;
+import flights.Ticket;
 
 public interface IFlight {
     String getName();

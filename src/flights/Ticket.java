@@ -1,7 +1,7 @@
-package Flights;
+package flights;
 
 import ui.ITicket;
-import Account.Client;
+import account.Client;
 
 /**
  * Tickets.Flights.Ticket Object
@@ -19,6 +19,9 @@ public abstract class Ticket implements ITicket {
     private final Flight flight;
 
     protected Ticket(String name, int priceCoefficient, int milesCoefficient, Flight flight) {
+        if (flight == null)
+            throw new IllegalArgumentException("Flight must not be null");
+
         this.name = name;
         this.priceCoefficient = priceCoefficient;
         this.milesCoefficient = milesCoefficient;

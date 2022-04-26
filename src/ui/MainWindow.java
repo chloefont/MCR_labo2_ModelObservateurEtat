@@ -1,16 +1,11 @@
 package ui;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.util.Arrays;
 
 public class MainWindow extends JFrame {
 
@@ -21,7 +16,7 @@ public class MainWindow extends JFrame {
         super();
         assert clients != null;
         assert flights != null;
-        this.clients = clients;
+        this.clients = Arrays.stream(clients).sorted().toArray(IClient[]::new);
         this.flights = flights;
 
         buildUI();
@@ -44,6 +39,7 @@ public class MainWindow extends JFrame {
         gridPanel.add(panel3);
         gridPanel.add(panel4);
 
+        // Client selection
         panel1.setSize(panel1.getWidth(), 10);
         panel1.add(new JLabel("Client"));
         final JComboBox<IClient> clientComboBox = new JComboBox<>(clients);
@@ -55,42 +51,27 @@ public class MainWindow extends JFrame {
         } );
         panel1.add(detailsButton);
 
+        // Deposits
         panel2.setSize(panel2.getWidth(), 10);
         panel2.add(new JLabel("Credits"));
-        JFormattedTextField amountField = new JFormattedTextField(10);
-        amountField.setColumns(7);
+        JTextField amountField = new JTextField(10);
 
-        // source : https://stackoverflow.com/questions/33348481/restrict-input-of-jtextfield-to-double-numbers
-        amountField.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                Runnable format = new Runnable() {
-                    @Override
-                    public void run() {
-                        String text = amountField.getText();
-                        if(!text.matches("\\d*(\\.\\d{0,2})?")){
-                            amountField.setText(text.substring(0,text.length()-1));
-                        }
-                    }
-                };
-                SwingUtilities.invokeLater(format);
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {}
-            @Override
-            public void changedUpdate(DocumentEvent e) {}
-        });
 
         panel2.add(amountField);
         JButton addButton = new JButton("Add");
 
         addButton.addActionListener(e -> {
             IClient selectedClient = (IClient) clientComboBox.getSelectedItem();
-            selectedClient.getAccountState().deposit(Double.parseDouble(amountField.getText()));
+            try {
+                selectedClient.getAccountState().deposit(Double.parseDouble(amountField.getText()));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Invalid amount");
+            }
+
         });
         panel2.add(addButton);
 
+        // Book flights
         panel3.setSize(panel3.getWidth(), 10);
         panel3.add(new JLabel("Flight"));
         final JComboBox<IFlight> flighttComboBox = new JComboBox<>(flights);
@@ -116,20 +97,22 @@ public class MainWindow extends JFrame {
         bookCashButton.addActionListener(e -> {
             ITicket selectedTicket = (ITicket) flightCatComboBox.getSelectedItem();
             IClient selectedClient = (IClient) clientComboBox.getSelectedItem();
-            //TODO fait rien avec valeur retour
+
             selectedClient.getAccountState().bookCash(selectedTicket);
+
         });
 
         bookMilesButton.addActionListener(e -> {
             ITicket selectedTicket = (ITicket) flightCatComboBox.getSelectedItem();
             IClient selectedClient = (IClient) clientComboBox.getSelectedItem();
-            //TODO fait rien avec valeur retour
+
             selectedClient.getAccountState().bookMiles(selectedTicket);
         });
 
         panel3.add(bookCashButton);
         panel3.add(bookMilesButton);
 
+        // Show account states
         final JButton statuses = new JButton("Statuses");
         statuses.addActionListener(e ->{
             new StatusesWindow(clients);

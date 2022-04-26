@@ -1,7 +1,4 @@
-package Flights;
-
-import Flights.Flight;
-import Flights.Ticket;
+package flights;
 
 public class FirstClassTicket extends Ticket {
 
