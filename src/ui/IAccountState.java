@@ -9,6 +9,6 @@ public interface IAccountState {
     String getLastAction();
     Color getStatusColor();
     void deposit(double amount);
-    boolean bookCash(ITicket t);
-    boolean bookMiles(ITicket t);
+    void bookCash(ITicket t);
+    void bookMiles(ITicket t);
 }

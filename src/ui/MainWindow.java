@@ -111,8 +111,7 @@ public class MainWindow extends JFrame {
             ITicket selectedTicket = (ITicket) flightCatComboBox.getSelectedItem();
             IClient selectedClient = (IClient) clientComboBox.getSelectedItem();
 
-            if (!selectedClient.getAccountState().bookCash(selectedTicket))
-                JOptionPane.showMessageDialog(null, "Not enough money");
+            selectedClient.getAccountState().bookCash(selectedTicket);
 
         });
 
@@ -120,8 +119,7 @@ public class MainWindow extends JFrame {
             ITicket selectedTicket = (ITicket) flightCatComboBox.getSelectedItem();
             IClient selectedClient = (IClient) clientComboBox.getSelectedItem();
 
-            if (!selectedClient.getAccountState().bookMiles(selectedTicket))
-                JOptionPane.showMessageDialog(null, "Not enough miles");
+            selectedClient.getAccountState().bookMiles(selectedTicket);
         });
 
         panel3.add(bookCashButton);

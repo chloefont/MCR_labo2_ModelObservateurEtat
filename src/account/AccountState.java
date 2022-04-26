@@ -22,7 +22,9 @@ public abstract class AccountState implements IAccountState {
     enum Action {
         Deposit, // Deposit money.
         BookMiles, // Book a ticket using miles.
-        BookCash // Book a ticket using cash.
+        BookCash, // Book a ticket using cash.
+        ErrorNotEnoughCash, // Error when booking a ticket using cash.
+        ErrorNotEnoughMiles // Error when booking a ticket using miles.
     }
 
     /**
@@ -119,9 +121,8 @@ public abstract class AccountState implements IAccountState {
      * Book a ticket using the miles on the account.
      * Notify the observers of the account.
      * @param ticket the ticket the client is trying to buy.
-     * @return returns true if the ticket has been booked.
      */
-    public boolean bookMiles(ITicket ticket) {
+    public void bookMiles(ITicket ticket) {
         if (ticket == null)
             throw new IllegalArgumentException("Ticket must not be null");
 
@@ -129,9 +130,9 @@ public abstract class AccountState implements IAccountState {
         if(miles >= tMiles) {
             miles -= tMiles;
             actionPerformed(Action.BookMiles);
-            return true;
+        } else {
+            actionPerformed(Action.ErrorNotEnoughMiles);
         }
-        return false;
     }
 
     /**
@@ -140,7 +141,7 @@ public abstract class AccountState implements IAccountState {
      * @param ticket the ticket the client is trying to buy.
      * @return returns true if the ticket has been booked.
      */
-    public boolean bookCash(ITicket ticket){
+    public void bookCash(ITicket ticket){
         if (ticket == null)
             throw new IllegalArgumentException("Ticket must not be null");
 
@@ -149,9 +150,9 @@ public abstract class AccountState implements IAccountState {
             balance -= tPrice;
             miles += ticket.getFlight().getDistance() * getMilesCoefficient();
             actionPerformed(Action.BookCash);
-            return true;
+        } else {
+            actionPerformed(Action.ErrorNotEnoughCash);
         }
-        return false;
     }
 
     /**
