@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class StatusesWindow extends InformationWindow implements Observer {
+public class StatusesWindow extends InformationWindow {
     static final String WINDOW_TITLE = "Statuses";
 
     private HashMap<IClient, JLabel> idToLabelMap = new HashMap();
@@ -40,7 +40,7 @@ public class StatusesWindow extends InformationWindow implements Observer {
     }
 
     @Override
-    public void update(Observable obj, Object arg) {
+    public void update(Observable obj) {
         getContentPane().removeAll();
 
         if (obj instanceof IClient) {

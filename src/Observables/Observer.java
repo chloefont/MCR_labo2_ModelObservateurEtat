@@ -1,7 +1,13 @@
 package Observables;
 
 import Observables.Observable;
-
+/**
+ * Represent an observer object.
+ */
 public interface Observer {
-    void update(Observable obj, Object arg);
+    /**
+     * Indicate to the object that an observable object has changed.
+     * @param o the observable object.
+     */
+    void update(Observable obj);
 }
