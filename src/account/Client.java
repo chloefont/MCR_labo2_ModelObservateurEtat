@@ -24,6 +24,17 @@ public class Client extends Observable implements IClient {
     private String firstname;
     private String lastname;
 
+    /**
+     * Creates a new client with a silver account
+     * @param firstname first name of this client
+     * @param lastname last name of this client
+     */
+    public Client(String firstname, String lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.account = new SilverState(this);
+    }
+
     // TOOO a chier ?
     public Boolean hasAccount() {
         return account != null;
@@ -42,17 +53,6 @@ public class Client extends Observable implements IClient {
             throw new IllegalArgumentException("Account must not be null");
 
         this.account = account;
-    }
-
-    /**
-     * Creates a new client with a silver account
-     * @param firstname first name of this client
-     * @param lastname last name of this client
-     */
-    public Client(String firstname, String lastname) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.account = new SilverState(this);
     }
 
     @Override
