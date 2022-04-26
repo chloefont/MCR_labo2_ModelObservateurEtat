@@ -2,7 +2,7 @@ package ui;
 
 import Observables.Observable;
 
-import javax.swing.*;
+import javax.swing.JLabel;
 
 public class ClientDetailsWindow extends InformationWindow{
     private IClient client;

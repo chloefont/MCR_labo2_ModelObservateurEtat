@@ -1,8 +1,5 @@
 package Flights;
 
-import Flights.Flight;
-import Flights.Ticket;
-
 public class EconomyTicket extends Ticket {
     public EconomyTicket(Flight flight) {
         super("Economy", 1, 1, flight);

@@ -1,6 +1,6 @@
 package Account;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * Silver state of an account
