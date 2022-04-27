@@ -1,10 +1,10 @@
 package ui;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
+import java.awt.*;
 import java.util.Arrays;
 
 /**
@@ -14,6 +14,7 @@ public class MainWindow extends JFrame {
 
     private static final int FRAME_WIDTH = 500;
     private static final int FRAME_HEIGHT = 300;
+    private static final int LIMIT_CHARS_AMOUNT = 20;
 
     // Clients in the system
     private final IClient[] clients;
@@ -37,6 +38,7 @@ public class MainWindow extends JFrame {
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setLocationRelativeTo(null);
         setVisible(true);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -71,7 +73,16 @@ public class MainWindow extends JFrame {
         panel2.setSize(panel2.getWidth(), 10);
         panel2.add(new JLabel("Credits"));
         JTextField amountField = new JTextField(10);
-
+        // Limit the characters in the text field
+        amountField.setDocument(new PlainDocument() {
+            public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
+                if (str == null)
+                    return;
+                if ((getLength() + str.length()) <= LIMIT_CHARS_AMOUNT) {
+                    super.insertString(offset, str, attr);
+                }
+            }
+        });
 
         panel2.add(amountField);
         JButton addButton = new JButton("Add");
@@ -90,15 +101,15 @@ public class MainWindow extends JFrame {
         // Book flights
         panel3.setSize(panel3.getWidth(), 10);
         panel3.add(new JLabel("Flight"));
-        final JComboBox<IFlight> flighttComboBox = new JComboBox<>(flights);
-        panel3.add(flighttComboBox);
+        final JComboBox<IFlight> flightComboBox = new JComboBox<>(flights);
+        panel3.add(flightComboBox);
 
-        IFlight selectedFlight = (IFlight) flighttComboBox.getSelectedItem();
+        IFlight selectedFlight = (IFlight) flightComboBox.getSelectedItem();
         JComboBox<ITicket> flightCatComboBox = new JComboBox<>(selectedFlight.getTickets());
 
-        flighttComboBox.addActionListener(e -> {
+        flightComboBox.addActionListener(e -> {
             flightCatComboBox.removeAllItems();
-            for(ITicket t : ((IFlight) flighttComboBox.getSelectedItem()).getTickets()) {
+            for(ITicket t : ((IFlight) flightComboBox.getSelectedItem()).getTickets()) {
                 flightCatComboBox.addItem(t);
 
             }
