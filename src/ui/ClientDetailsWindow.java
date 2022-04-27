@@ -5,9 +5,20 @@ import observables.Observer;
 
 import javax.swing.JLabel;
 
+/**
+ * Window that displays the details of a client.
+ * @author Luca Coduri
+ * @author Chloé Fontaine
+ * @version 1.0
+ */
 public class ClientDetailsWindow extends InformationWindow implements Observer {
+    // Client to display
     private final IClient client;
 
+    /**
+     * Creates a new ClientDetailsWindow.
+     * @param client the client to display
+     */
     ClientDetailsWindow(IClient client) {
         super();
 
@@ -32,6 +43,11 @@ public class ClientDetailsWindow extends InformationWindow implements Observer {
 
     }
 
+    /**
+     * Creates the components of the window.
+     * @param client the client to display
+     * @return the components of the window
+     */
     static private JLabel[] createComponents(IClient client) {
         return new JLabel[]{
                 new JLabel("Last name: " + client.getLastName()),

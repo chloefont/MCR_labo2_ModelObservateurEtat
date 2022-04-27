@@ -2,6 +2,9 @@ package ui;
 
 import java.awt.Color;
 
+/**
+ * Represent an account
+ */
 public interface IAccountState {
     double getBalance();
     double getMiles();

@@ -1,12 +1,8 @@
 package ui;
 
-import observables.Observable;
-import observables.Observer;
-
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class StatusesWindow extends InformationWindow {
     static final String WINDOW_TITLE = "Statuses";

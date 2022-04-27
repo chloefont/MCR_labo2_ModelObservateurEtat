@@ -12,6 +12,7 @@ import java.awt.Color;
  * @author Nelson Jeanrenaud
  */
 public class SilverState extends AccountState {
+    // Maximum requirement of miles to get a silver account
     private static final int MAX_MILES = 1000;
     /**
      * Create an account for a client
@@ -22,6 +23,10 @@ public class SilverState extends AccountState {
         super(owner);
     }
 
+    /**
+     * Creates a new silver account from an old one. Use it to change the state of an account
+     * @param oldState The old state of the account
+     */
     SilverState(AccountState oldState) {
         super(oldState);
     }

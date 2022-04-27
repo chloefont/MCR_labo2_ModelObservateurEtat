@@ -12,6 +12,8 @@ import java.util.Objects;
  * <p>Represents a client of the flight compagny manager</p>
  * @version 1.0
  * @author Nelson Jeanrenaud
+ * @author Luca Coduri
+ * @author Chloé Fontaine
  */
 public class Client extends Observable implements IClient {
 
@@ -60,21 +62,37 @@ public class Client extends Observable implements IClient {
         return lastname + " " + firstname;
     }
 
+    /**
+     * Get the id of this client
+     * @return the id of this client
+     */
     @Override
     public int getId() {
         return id;
     }
 
-    @Override
-    public String getLastName() {
-        return lastname;
-    }
-
+    /**
+     * Get the first name of this client
+     * @return the first name of this client
+     */
     @Override
     public String getFirstName() {
         return firstname;
     }
 
+    /**
+     * Get the last name of this client
+     * @return the last name of this client
+     */
+    @Override
+    public String getLastName() {
+        return lastname;
+    }
+
+    /**
+     * Get the account of this client
+     * @return the account of this client
+     */
     @Override
     public IAccountState getAccountState() {
         return account;

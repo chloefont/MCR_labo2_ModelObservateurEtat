@@ -74,6 +74,7 @@ public abstract class AccountState implements IAccountState {
         this.balance = oldState.balance;
         this.miles = oldState.miles;
         this.owner = oldState.owner;
+        this.lastAction = oldState.lastAction;
     }
 
     /**
@@ -139,7 +140,6 @@ public abstract class AccountState implements IAccountState {
      * Book a ticket using the money on the account.
      * Notify the observers of the account.
      * @param ticket the ticket the client is trying to buy.
-     * @return returns true if the ticket has been booked.
      */
     public void bookCash(ITicket ticket){
         if (ticket == null)

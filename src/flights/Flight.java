@@ -14,22 +14,26 @@ import java.util.Arrays;
  * @author Nelson Jeanrenaud
  */
 public class Flight implements IFlight {
+    // Name of the flight
     private String name;
-    /**
-     * Distance in miles traveled during this flight
-     */
+    // Distance in miles traveled during this flight
     private double distance;
-    /**
-     * Base price of this flight
-     */
+    // Base price of this flight
     private double price;
 
+    // Ticket types available for this flight
     private Ticket[] tickets = {
             new EconomyTicket(this),
             new BusinessTicket(this),
             new FirstClassTicket(this)
     };
-
+    
+    /**
+     * Creates a new flight
+     * @param name name of the flight
+     * @param distance distance in miles traveled during this flight
+     * @param price base price of this flight
+     */
     public Flight(String name, double distance, double price) {
         this.name = name;
         this.distance = distance;
