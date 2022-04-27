@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.ArrayList;
 
 public class StatusesWindow extends InformationWindow {
-    static final String WINDOW_TITLE = "Statuses";
+    private static final String WINDOW_TITLE = "Statuses";
     private final ArrayList<ClientLabel> labels = new ArrayList<>();
 
     StatusesWindow(IClient[] clients) {

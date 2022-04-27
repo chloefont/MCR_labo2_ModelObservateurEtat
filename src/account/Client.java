@@ -27,6 +27,11 @@ public class Client extends Observable implements IClient {
     private String lastname;
 
     /**
+     * Account owned by this client
+     */
+    private AccountState account;
+
+    /**
      * Creates a new client with a silver account
      * @param firstname first name of this client
      * @param lastname last name of this client
@@ -37,15 +42,9 @@ public class Client extends Observable implements IClient {
         this.account = new SilverState(this);
     }
 
-    // TOOO a chier ?
     public Boolean hasAccount() {
         return account != null;
     }
-
-    /**
-     * Account owned by this client
-     */
-    private AccountState account;
 
     /**
      * Change the account state of this client
@@ -96,19 +95,6 @@ public class Client extends Observable implements IClient {
     @Override
     public IAccountState getAccountState() {
         return account;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Client client = (Client) o;
-        return id == client.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 
     @Override

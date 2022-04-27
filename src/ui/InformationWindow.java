@@ -19,7 +19,6 @@ public abstract class InformationWindow extends JFrame {
     InformationWindow(){
         super();
 
-
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setLocationRelativeTo(null);
         setVisible(true);
